@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.screens.menu_screen.MenuFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/cont"
+            android:layout_width="match_parent"
+
+            android:layout_height="500dp">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_corners"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cont"
+            android:textColor="#D7A63C"
+            android:textSize="30sp"
+            android:text="@string/text_egg_benedict"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/txt_desc"
+            app:layout_constraintTop_toBottomOf="@id/txt_name"
+            app:layout_constraintStart_toStartOf="@id/txt_name"
+            android:textSize="16sp"
+            android:text="@string/text_master_the_king_of_breakfast_dishes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txt_cook"
+            android:textSize="16sp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/txt_desc"
+            app:layout_constraintTop_toBottomOf="@id/txt_name"
+            android:text="Cooked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/txt_cooked"
+            app:layout_constraintEnd_toEndOf="@id/txt_cook"
+            app:layout_constraintStart_toStartOf="@id/txt_cook"
+            android:text="8.3K"
+            app:layout_constraintBottom_toTopOf="@id/txt_cook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/txt_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="(2.564 Review)"
+            app:layout_constraintStart_toStartOf="@+id/txt_desc"
+            app:layout_constraintTop_toBottomOf="@+id/txt_desc" />
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_btn_2"
+            android:text="Add to Fav"
+            android:textAllCaps="false"
+            android:textColor="#939292"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_review"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txt_review" />
+
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="16dp"
+            android:background="#9C9C9C"
+            app:layout_constraintEnd_toEndOf="@+id/button"
+            app:layout_constraintStart_toStartOf="@+id/txt_review"
+            app:layout_constraintTop_toBottomOf="@+id/txt_review" />
+
+
+        <TextView
+            android:id="@+id/txt_kkal"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            app:layout_constraintStart_toStartOf="@id/view"
+            android:textSize="20sp"
+            android:text="Kkal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txt_cook_time"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            app:layout_constraintEnd_toEndOf="@id/view"
+            android:textSize="20sp"
+            android:text="Cook Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txt_prep_time"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            app:layout_constraintEnd_toStartOf="@id/txt_cook_time"
+            app:layout_constraintStart_toEndOf="@id/txt_kkal"
+            android:textSize="20sp"
+            android:text="Prep Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/txt_dr_kkal"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:layout_constraintTop_toBottomOf="@id/txt_kkal"
+            app:layout_constraintStart_toStartOf="@id/txt_kkal"
+            android:text="2pp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/txt_25_min"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_prep_time"
+            app:layout_constraintEnd_toEndOf="@id/txt_prep_time"
+            app:layout_constraintStart_toStartOf="@id/txt_prep_time"
+            android:text="25 min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/txt_20_min"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_cook_time"
+            app:layout_constraintEnd_toEndOf="@id/txt_cook_time"
+            app:layout_constraintStart_toStartOf="@id/txt_cook_time"
+            android:text="20 min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/text_desc"
+            android:textSize="22sp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_dr_kkal"
+            app:layout_constraintStart_toStartOf="@id/txt_dr_kkal"
+            android:text="Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/txt_description"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="The classic pile-up of toasted English mufffins topped with Canadian bacon, poached eggs and creamy hollandaise sauce you usually reserve for weekend brunch plans."
+            app:layout_constraintStart_toStartOf="@id/text_desc"
+            app:layout_constraintTop_toBottomOf="@id/text_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs_menu"
+            android:layout_marginTop="26dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+
+        <androidx.viewpager.widget.ViewPager
+            app:layout_constraintTop_toBottomOf="@id/tabs_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/general_nav"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.finalapp.presentation.screens.home_screen.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/navigation_search" />
+        <action
+            android:id="@+id/action_homeFragment_to_addPostFragment"
+            app:destination="@id/navigation_add" />
+        <action
+            android:id="@+id/action_homeFragment_to_cookBookFragment"
+            app:destination="@id/navigation_cook_book" />
+        <action
+            android:id="@+id/action_homeFragment_to_popularRecipesFragment"
+            app:destination="@id/popularRecipesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_navigation_home_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/popularRecipesFragment"
+        android:name="com.example.finalapp.presentation.screens.popular_recipes_screen.PopularRecipesFragment"
+        android:label="fragment_popular_recipes"
+        tools:layout="@layout/fragment_popular_recipes" />
+
+    <fragment
+        android:id="@+id/navigation_add"
+        android:name="com.example.finalapp.presentation.screens.addpost_screen.AddPostFragment"
+        android:label="AddPostFragment" />
+    <fragment
+        android:id="@+id/navigation_cook_book"
+        android:name="com.example.finalapp.presentation.screens.cook_book_screen.CookBookFragment"
+        android:label="fragment_cook_book"
+        tools:layout="@layout/fragment_cook_book" />
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.example.finalapp.presentation.screens.search_screen.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.finalapp.presentation.screens.profile_screen.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.finalapp.presentation.screens.menu_screen.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" />
+</navigation>

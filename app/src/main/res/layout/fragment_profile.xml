@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.screens.profile_screen.ProfileFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_profile"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="55dp"
+        android:background="@drawable/bg_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="150dp"
+        android:layout_height="150dp"/>
+
+    <TextView
+        android:layout_marginStart="38dp"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintBottom_toBottomOf="@id/img_profile"
+        app:layout_constraintTop_toTopOf="@id/img_profile"
+        app:layout_constraintStart_toEndOf="@id/img_profile"
+        android:id="@+id/txt_followers"
+        android:fontFamily="@font/syne_bold"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="1,023"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@id/txt_followers"
+        app:layout_constraintStart_toStartOf="@id/txt_followers"
+        app:layout_constraintTop_toBottomOf="@id/txt_followers"
+        android:id="@+id/text_followers"
+        android:textSize="16sp"
+        android:text="followers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+    <TextView
+        android:layout_marginStart="38dp"
+        app:layout_constraintBottom_toBottomOf="@id/txt_followers"
+        app:layout_constraintTop_toTopOf="@id/txt_followers"
+        app:layout_constraintStart_toEndOf="@id/txt_followers"
+        android:id="@+id/txt_following"
+        android:fontFamily="@font/syne_bold"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="223"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@id/txt_following"
+        app:layout_constraintStart_toStartOf="@id/txt_following"
+        app:layout_constraintTop_toBottomOf="@id/txt_following"
+        android:id="@+id/text_following"
+        android:textSize="16sp"
+        android:text="followers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/txt_followers"
+        app:layout_constraintStart_toStartOf="@id/txt_followers"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:text="Kelly Hudson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/txt_food_photos"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/img_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Food Photos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginEnd="18dp"
+        android:textColor="#DC9A14"
+        android:textSize="12sp"
+        android:text="Show All"
+        app:layout_constraintBottom_toBottomOf="@id/txt_food_photos"
+        app:layout_constraintTop_toTopOf="@id/txt_food_photos"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:id="@+id/ln"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintTop_toBottomOf="@id/txt_food_photos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <ImageView
+            android:layout_weight="1"
+            android:src="@drawable/img_4"
+            android:layout_width="110dp"
+            android:layout_height="110dp"/>
+
+        <ImageView
+            android:layout_marginHorizontal="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/img_4"
+            android:layout_width="110dp"
+            android:layout_height="110dp"/>
+
+        <ImageView
+            android:layout_weight="1"
+            android:src="@drawable/img_4"
+            android:layout_width="110dp"
+            android:layout_height="110dp"/>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/txt_favorite"
+        android:layout_marginTop="38dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/ln"
+        app:layout_constraintStart_toStartOf="@id/txt_food_photos"
+        android:text="Favorite Foods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:id="@+id/ln_2"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/txt_favorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:layout_weight="1"
+            android:textColor="#DC9A14"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_btn_3"
+            android:text="Cheese"
+            android:layout_width="110dp"
+            android:layout_height="33dp"/>
+
+
+        <Button
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            android:textColor="#DC9A14"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_btn_3"
+            android:text="Fruit"
+            android:layout_width="110dp"
+            android:layout_height="33dp"/>
+
+        <Button
+            android:layout_weight="1"
+            android:textColor="#DC9A14"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_btn_3"
+            android:text="Chicken"
+            android:layout_width="110dp"
+            android:layout_height="33dp"/>
+
+
+        <Button
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:textColor="#DC9A14"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_btn_3"
+            android:text="Meat"
+            android:layout_width="110dp"
+            android:layout_height="33dp"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/txt_favorite_recipe"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/ln_2"
+        app:layout_constraintStart_toStartOf="@id/txt_favorite"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="Favorite Recipes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="24dp"
+        tools:listitem="@layout/item_recent_recipes"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_favorite_recipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/img_1"
+    android:layout_height="match_parent"
+    tools:context=".presentation.screens.create_acc_screen.CreateAccFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:background="@drawable/bg_const"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginVertical="170dp"
+        android:layout_width="0dp"
+        android:layout_marginHorizontal="70dp"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@color/white"
+            android:alpha="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <ImageView
+            android:alpha="1"
+            android:id="@+id/img_icon"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toTopOf="@id/container"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintStart_toStartOf="@id/container"
+            android:src="@drawable/icon_park_outline_chef_hat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txt_good_food"
+            android:layout_marginTop="18dp"
+            app:layout_constraintTop_toBottomOf="@id/img_icon"
+            app:layout_constraintEnd_toEndOf="@id/img_icon"
+            app:layout_constraintStart_toStartOf="@id/img_icon"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/syne_bold"
+            android:text="@string/text_good_food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/txt_desc"
+            android:layout_marginTop="32dp"
+            android:textAlignment="center"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_good_food"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintStart_toStartOf="@id/container"
+            android:fontFamily="@font/syne_bold"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:text="@string/text_nutritionally_balanced_easy_to_cook_recipes_qualityfresh_local_ingredients"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_create"
+            android:layout_marginTop="60dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_desc"
+            android:paddingHorizontal="30dp"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintStart_toStartOf="@id/container"
+            android:textSize="15sp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/syne_bold"
+            android:textStyle="bold"
+            android:text="@string/text_create_account"
+            android:background="@drawable/bg_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txt_have_acc"
+            android:layout_marginTop="50dp"
+            app:layout_constraintTop_toBottomOf="@id/btn_create"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintStart_toStartOf="@id/container"
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            android:textSize="13sp"
+            android:text="@string/text_already_have_a_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/txt_log_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/syne_bold"
+            android:text="@string/text_log_in"
+            android:textColor="@color/yellow"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/txt_have_acc"
+            app:layout_constraintStart_toStartOf="@id/txt_have_acc"
+            app:layout_constraintTop_toBottomOf="@id/txt_have_acc" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

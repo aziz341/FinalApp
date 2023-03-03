@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">FoodRecipeApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="app_id">4crDSOaoMrl82snxBPkpTuztkYJQqMAvmKF4YIMC</string>
+    <string name="client_key">QvLwBLjd55P5T7qLAFbnOpM9zhjiyx5y2Z7LPc0O</string>
+    <string name="api_key">RvCFJCKREUmT17tGMzcenXd5MbhPh4DuB1cQAD4f</string>
+    <string name="server_url">https://parseapi.back4app.com/</string>
+
+    <string name="let_s_start_making_good_meals">Let\'s start making good meals</string>
+    <string name="welcome_back_to_good_food">Welcome Back to Good Food</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="register_password">Password</string>
+    <string name="gallery">Галерея</string>
+    <string name="camera">Камера</string>
+    <string name="close">Отменить</string>
+    <string name="hint_post_title">Recipes name</string>
+    <string name="hint_post_description">Post description</string>
+    <string name="text_pick_image">Pick Image</string>
+    <string name="button_create_post">Create post</string>
+    <string name="text_good_food">Good Food</string>
+    <string name="text_nutritionally_balanced_easy_to_cook_recipes_qualityfresh_local_ingredients">Nutritionally balanced, easy to cook recipes. Qualityfresh local ingredients.</string>
+    <string name="text_create_account">Create Account</string>
+    <string name="text_already_have_a_account">Already have a account ?</string>
+    <string name="text_log_in">LOG IN</string>
+    <string name="text_20_weekend_dinner_recipes">20 Weekend Dinner Recipes</string>
+    <string name="text_20_easy_to_cook_for_you">20 easy to cook for you</string>
+    <string name="text_view_more">View more</string>
+    <string name="hint_user_name">User Name</string>
+    <string name="text_egg_benedict">Egg Benedict</string>
+    <string name="text_master_the_king_of_breakfast_dishes">Master the king of breakfast dishes</string>
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.screens.home_screen.HomeFragment">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:alpha="0.5"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="244dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="14dp"
+        android:fontFamily="@font/syne_bold"
+        android:text="@string/text_20_weekend_dinner_recipes"
+        android:textColor="@color/white"
+        android:textSize="29sp"
+        app:layout_constraintBottom_toBottomOf="@id/img"
+        app:layout_constraintStart_toStartOf="@id/img" />
+
+    <TextView
+        android:id="@+id/txt_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/syne_bold"
+        android:text="@string/text_20_easy_to_cook_for_you"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@id/txt_name"
+        app:layout_constraintTop_toBottomOf="@id/txt_name" />
+
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recyclerView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/view_pager"
+        app:layout_constraintStart_toStartOf="@+id/view_pager"
+        app:layout_constraintTop_toBottomOf="@+id/img"
+        tools:listitem="@layout/item_recent_recipes" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
