@@ -1,7 +1,6 @@
 package com.example.finalapp.presentation.screens.addpost_screen
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
@@ -53,7 +52,8 @@ class AddPostFragment : Fragment() {
 
     private val getContent: ActivityResultLauncher<String> =
         registerForActivityResult(ActivityResultContracts.GetContent()) { imageUri: Uri? ->
-            binding.pickImage.load(imageUri)
+            binding.postImage.load(imageUri)
+
         }
     private val viewModel: AddPostViewModel by viewModels()
 
@@ -73,7 +73,7 @@ class AddPostFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.createpostBtn.setOnClickListener {
+        binding.createPost.setOnClickListener {
             createPost()
         }
     }
@@ -116,7 +116,7 @@ class AddPostFragment : Fragment() {
 
     private fun notEmpty(): Boolean {
         if (imageFile != null) {
-            if (binding.postTitle.text.isNotEmpty() && binding.postDescription.text.isNotEmpty()) return true
+            if (binding.postTitle.text!!.isNotEmpty() && binding.postDescription.text!!.isNotEmpty()) return true
         }
         return false
     }
@@ -174,7 +174,7 @@ class AddPostFragment : Fragment() {
                 dialog.dismiss()
             }
             pickGallery?.setOnClickListener {
-                getContent.launch(MIME_TYPES.toString())
+                getContent.launch(MIMETYPE_IMAGES)
                 Toast.makeText(requireContext(), "Pick from gallery", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }

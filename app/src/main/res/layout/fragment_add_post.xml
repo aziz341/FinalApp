@@ -1,198 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <ImageView
-        android:id="@+id/postImage"
-        android:layout_width="411dp"
-        android:layout_height="206dp"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="@+id/post_title"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/post_title"
-        app:layout_constraintTop_toBottomOf="@+id/post_cook_time">
-    </ImageView>
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Name of recipe"
-        android:textSize="19sp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.012"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/post_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/yellow"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:ems="10"
-        android:hint="@string/hint_post_title"
-        android:textColorHint="@color/yellow"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <EditText
-        android:id="@+id/post_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="@color/yellow"
-        android:ems="10"
-        android:hint="@string/hint_post_description"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/yellow"
-        app:layout_constraintEnd_toEndOf="@+id/post_title"
-        app:layout_constraintStart_toStartOf="@+id/post_title"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <!--    <ImageView-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginTop="15dp"-->
-<!--        app:layout_constraintDimensionRatio="1:1"-->
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
 
-    <Button
-        android:id="@+id/createpostBtn"
-        android:layout_width="0dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="56dp"
-        android:backgroundTint="@color/redorange"
-        android:text="@string/button_create_post"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/postImage"
-        app:layout_constraintTop_toBottomOf="@+id/postImage" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Description"
-        android:textSize="19sp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/post_title"
-        app:layout_constraintHorizontal_bias="0.023"
-        app:layout_constraintStart_toStartOf="@+id/post_title"
-        app:layout_constraintTop_toBottomOf="@+id/post_title" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Kkal"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="@+id/post_description"
-        app:layout_constraintHorizontal_bias="0.023"
-        app:layout_constraintStart_toStartOf="@+id/post_description"
-        app:layout_constraintTop_toBottomOf="@+id/post_description" />
-
-    <EditText
-        android:id="@+id/post_kkal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Post kkal"
-        android:backgroundTint="@color/yellow"
-        android:maxLength="4"
-        android:inputType="number"
-        android:textColorHint="@color/yellow"
-        app:layout_constraintEnd_toEndOf="@+id/post_description"
-        app:layout_constraintStart_toStartOf="@+id/post_description"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
-    <TextView
-        android:id="@+id/post_txt_prep_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Prep time"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="@+id/post_kkal"
-        app:layout_constraintHorizontal_bias="0.028"
-        app:layout_constraintStart_toStartOf="@+id/post_kkal"
-        app:layout_constraintTop_toBottomOf="@+id/post_kkal" />
 
-    <EditText
-        android:id="@+id/post_prep_time"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/yellow"
-        android:ems="10"
-        android:hint="Post prep time"
-        android:inputType="number"
-        android:textColorHint="@color/yellow"
-        app:layout_constraintEnd_toEndOf="@+id/post_kkal"
-        app:layout_constraintStart_toStartOf="@+id/post_kkal"
-        app:layout_constraintTop_toBottomOf="@+id/post_txt_prep_time" />
-
-    <TextView
-        android:id="@+id/post_txt_cook_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Cook time"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="@+id/post_prep_time"
-        app:layout_constraintHorizontal_bias="0.018"
-        app:layout_constraintStart_toStartOf="@+id/post_prep_time"
-        app:layout_constraintTop_toBottomOf="@+id/post_prep_time" />
-
-    <EditText
-        android:id="@+id/post_cook_time"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/yellow"
-        android:ems="10"
-        android:hint="Post cook time"
-        android:inputType="number"
-        android:textColorHint="@color/yellow"
-        app:layout_constraintEnd_toEndOf="@+id/post_prep_time"
-        app:layout_constraintStart_toStartOf="@+id/post_prep_time"
-        app:layout_constraintTop_toBottomOf="@+id/post_txt_cook_time" />
-
-    <ImageView
-        android:id="@+id/pick_image"
-        android:layout_width="98dp"
-        android:layout_height="70dp"
-        app:layout_constraintBottom_toBottomOf="@+id/postImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/postImage"
-        app:layout_constraintTop_toTopOf="@+id/postImage"
-        app:layout_constraintVertical_bias="0.417"
-        app:srcCompat="@drawable/image" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Tab to choose the photo"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/pick_image"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="@+id/pick_image"
-        app:layout_constraintTop_toBottomOf="@+id/pick_image" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_reception"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_margin="24dp"
+                android:textSize="16sp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:hint="@string/title_reception"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/post_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:maxLines="6"
+                    android:singleLine="false" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/post_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/description"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/need_ingridients"
+                    />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/instruction_cook"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="16dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/post_prep_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prep_time"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="16dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/post_cook_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/cook_time"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_margin="16dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/post_kkal"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/count_kkal"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/post_count_ingridients"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="16dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/count_iingridients"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="5dp"
+                android:clickable="true"
+                android:layout_margin="8dp"
+                android:backgroundTint="@color/yellow"
+                app:cardCornerRadius="8dp">
+
+                <Button
+                    android:id="@+id/pickImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/add_image"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:background="@color/yellow"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/postImage"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                />
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="5dp"
+                android:clickable="true"
+                android:layout_margin="8dp"
+                android:backgroundTint="@color/yellow"
+                app:cardCornerRadius="8dp">
+
+                <Button
+                    android:id="@+id/create_post"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/add_receptions"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:background="@color/yellow"/>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

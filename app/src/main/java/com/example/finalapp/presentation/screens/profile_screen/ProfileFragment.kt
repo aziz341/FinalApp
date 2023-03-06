@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.finalapp.databinding.FragmentProfileBinding
 import com.parse.ParseUser
@@ -26,8 +25,5 @@ class ProfileFragment : Fragment() {
         val userName = ParseUser.getCurrentUser().username
         val userEmail = ParseUser.getCurrentUser().email
         binding.txtName.text = userName
-
-
     }
-
 }

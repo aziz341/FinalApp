@@ -31,4 +31,15 @@
     <string name="hint_user_name">User Name</string>
     <string name="text_egg_benedict">Egg Benedict</string>
     <string name="text_master_the_king_of_breakfast_dishes">Master the king of breakfast dishes</string>
+    <string name="add_reception">Добовления рецепта</string>
+    <string name="title_reception">Название блюда</string>
+    <string name="description">Описание</string>
+    <string name="need_ingridients">какие ингридиенты понадобятся</string>
+    <string name="instruction_cook">инструкция приготовления</string>
+    <string name="prep_time">время приготовления</string>
+    <string name="cook_time">время подготовки ингридеинтов</string>
+    <string name="count_kkal">кол-во колорий</string>
+    <string name="count_iingridients">кол-во ингридиентов</string>
+    <string name="add_image">Добавить фото</string>
+    <string name="add_receptions">Добавить рецепт</string>
 </resources>
