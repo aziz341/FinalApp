@@ -65,7 +65,4 @@ class HomeFragment : Fragment() {
         .setPopEnterAnim(R.anim.slide_in_left)
         .setPopExitAnim(R.anim.slide_out_right)
         .build()
-
-
-
 }

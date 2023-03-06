@@ -17,12 +17,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.viewModels
+import coil.load
 import com.example.finalapp.R
+import com.example.finalapp.data.MIMETYPE_IMAGES
 import com.example.finalapp.databinding.FragmentAddPostBinding
 import com.example.finalapp.domain.model.Image
 import com.example.finalapp.domain.model.Post
@@ -37,6 +40,8 @@ import java.io.ByteArrayOutputStream
 
 
 class AddPostFragment : Fragment() {
+
+
     var cameraUri: Uri? = null
     private var imageUri: Uri? = null
     private var selectedImage: Bitmap? = null
@@ -46,11 +51,26 @@ class AddPostFragment : Fragment() {
         ContentValues()
     }
 
+    private val getContent: ActivityResultLauncher<String> =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { imageUri: Uri? ->
+            binding.pickImage.load(imageUri)
+        }
     private val viewModel: AddPostViewModel by viewModels()
 
-    private val binding:FragmentAddPostBinding by lazy {
-    FragmentAddPostBinding.inflate(layoutInflater)
-}
+    private val binding: FragmentAddPostBinding by lazy {
+        FragmentAddPostBinding.inflate(layoutInflater)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (!hasPermissions(requireContext(), *PERMISSIONS)) {
+            ActivityCompat.requestPermissions(requireActivity(), PERMISSIONS, PERMISSION_ALL);
+        }
+        binding.pickImage.setOnClickListener {
+            openBottomSheet()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.createpostBtn.setOnClickListener {
@@ -65,19 +85,9 @@ class AddPostFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        if (!hasPermissions(requireContext(), *PERMISSIONS)) {
-            ActivityCompat.requestPermissions(requireActivity(), PERMISSIONS, PERMISSION_ALL);
-        }
-        binding.pickImage.setOnClickListener {
-            openBottomSheet()
-        }
-    }
-
 
     private fun getImage() {
-        Log.i("Get","getImage ->")
+        Log.i("Get", "getImage ->")
         if (imageUri != null) {
             Picasso.get().load(imageUri).into(binding.postImage)
             uploadImage()
@@ -98,8 +108,7 @@ class AddPostFragment : Fragment() {
             )
             viewModel.createPost(post)
         } else {
-            Toast
-                .makeText(requireContext(), "Все поля должны быть заполнены", Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), "Все поля должны быть заполнены", Toast.LENGTH_SHORT)
                 .show()
 
         }
@@ -107,15 +116,13 @@ class AddPostFragment : Fragment() {
 
     private fun notEmpty(): Boolean {
         if (imageFile != null) {
-            if (binding.postTitle.text.isNotEmpty() && binding.postDescription.text.isNotEmpty())
-                return true
+            if (binding.postTitle.text.isNotEmpty() && binding.postDescription.text.isNotEmpty()) return true
         }
         return false
     }
 
     private fun checkReadExternalStoragePermission() = if (ContextCompat.checkSelfPermission(
-            requireContext(),
-            Manifest.permission.READ_EXTERNAL_STORAGE
+            requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE
         ) != PermissionChecker.PERMISSION_GRANTED
     ) {
         resultPickReadExternalStorage.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -125,32 +132,30 @@ class AddPostFragment : Fragment() {
     private val resultPickReadExternalStorage =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (!isGranted) return@registerForActivityResult
-            takePicture()
+//            takePicture()
         }
 
     private fun takePicture() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        takeImageResult.launch(intent)
+//        takeImageResult.launch(intent)
     }
 
-    private val takeImageResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
-            imageUri = result?.data?.data ?: return@registerForActivityResult
-            getImage()
-        }
+//    private val takeImageResult =
+//        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+//            if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
+//            imageUri = result?.data?.data ?: return@registerForActivityResult
+//            getImage()
+//        }
 
 
-    @SuppressLint("IntentReset")
-    private fun pickFromGallery() {
-        pickImageIntent = Intent(
-            Intent.ACTION_PICK,
-            MediaStore.Images.Media.INTERNAL_CONTENT_URI
-        )
-        pickImageIntent?.type = "image/*"
-        pickImageIntent?.putExtra(Intent.EXTRA_MIME_TYPES, MIME_TYPES)
-        startActivityForResult(pickImageIntent, IMAGE_PICK_CODE)
-    }
+//    private fun pickFromGallery() {
+//        pickImageIntent = Intent(
+//            Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI
+//        )
+//        pickImageIntent?.type = "image/*"
+//        pickImageIntent?.putExtra(Intent.EXTRA_MIME_TYPES, MIME_TYPES)
+//        startActivityForResult(pickImageIntent, IMAGE_PICK_CODE)
+//    }
 
     private fun openBottomSheet() {
         val dialog = BottomSheetDialog(requireContext())
@@ -158,20 +163,18 @@ class AddPostFragment : Fragment() {
         val cancelBtn = dialog.findViewById<MaterialButton>(R.id.cancel_btn)
         val takePicture = dialog.findViewById<MaterialCardView>(R.id.take_camera_card_view)
         val pickGallery = dialog.findViewById<MaterialCardView>(R.id.pick_gallery_card_view)
-//        val binding =
-//            BottomSheetDialogBinding.bind(R.layout.bottom_sheet_dialog.makeView(binding.root))
         binding.apply {
             cancelBtn?.setOnClickListener {
                 dialog.dismiss()
             }
             takePicture?.setOnClickListener {
-//                if (!checkReadExternalStoragePermission()) return@setOnClickListener
-                takePicture()
+                if (!checkReadExternalStoragePermission()) return@setOnClickListener
+//                takePicture()
                 Toast.makeText(requireContext(), "Take picture", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
             pickGallery?.setOnClickListener {
-                pickFromGallery()
+                getContent.launch(MIME_TYPES.toString())
                 Toast.makeText(requireContext(), "Pick from gallery", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
@@ -180,6 +183,7 @@ class AddPostFragment : Fragment() {
         dialog.show()
     }
 
+
     private fun uploadImage() {
         val steam = ByteArrayOutputStream()
         selectedImage =
@@ -187,11 +191,7 @@ class AddPostFragment : Fragment() {
         selectedImage?.compress(Bitmap.CompressFormat.PNG, 100, steam)
         val byteArray = steam.toByteArray()
         val parseFile = ParseFile("image.png", byteArray)
-        if(parseFile.saveInBackground() == null){
-            Toast.makeText(requireContext(), "null", Toast.LENGTH_SHORT).show()
-        }
-        else {
-        (SaveCallback { e ->
+        parseFile.saveInBackground(SaveCallback { e ->
             if (e == null) {
                 Toast.makeText(requireContext(), "Image saved!", Toast.LENGTH_SHORT).show()
                 imageFile = parseFile
@@ -199,8 +199,8 @@ class AddPostFragment : Fragment() {
                 Toast.makeText(requireContext(), "Failed is image!", Toast.LENGTH_SHORT).show()
             }
         })
-        }
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -209,6 +209,7 @@ class AddPostFragment : Fragment() {
             getImage()
         }
     }
+
     private fun parseFileToImage(file: ParseFile): Image {
         return Image("File", file.name, file.url)
 
@@ -223,10 +224,8 @@ class AddPostFragment : Fragment() {
         var PERMISSION_ALL = 1
         const val IMAGE_PICK_CODE = 100
         var PERMISSIONS = arrayOf(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.CAMERA
+            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA
         )
         val MIME_TYPES = arrayOf("image/jpeg", "image/png")
     }
-
 }

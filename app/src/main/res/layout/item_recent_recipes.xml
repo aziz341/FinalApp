@@ -125,4 +125,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/kkal" />
+
+    <CheckBox
+        android:id="@+id/check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:button="@drawable/selector_whislist_item"
+        app:useMaterialThemeColors="false"
+        app:layout_constraintEnd_toEndOf="@+id/txt_cooked"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txt_cooked"
+        app:layout_constraintTop_toBottomOf="@+id/txt_cooked" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
