@@ -6,18 +6,14 @@
     android:orientation="vertical">
 
 
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
             <TextView
                 android:layout_width="match_parent"
@@ -40,7 +36,7 @@
                     android:id="@+id/post_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textCapSentences"
+                    android:inputType="textPersonName"
                     android:maxLines="6"
                     android:singleLine="false" />
 
@@ -71,8 +67,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/need_ingridients"
-                    />
+                    android:hint="@string/need_ingridients" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -86,8 +81,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/instruction_cook"
-                    />
+                    android:hint="@string/instruction_cook" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -110,8 +104,8 @@
                         android:id="@+id/post_prep_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/prep_time"
-                        />
+                        android:inputType="number"
+                        android:hint="@string/prep_time" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -126,6 +120,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/cook_time"
+                        android:inputType="number"
+
                         />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -150,6 +146,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/count_kkal"
+                        android:inputType="number"
+
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -165,6 +163,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/count_iingridients"
+                        android:inputType="number"
+
                         />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>

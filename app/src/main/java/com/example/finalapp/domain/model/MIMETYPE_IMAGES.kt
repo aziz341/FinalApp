@@ -1,3 +1,3 @@
-package com.example.finalapp.data
+package com.example.finalapp.domain.model
 
 const val MIMETYPE_IMAGES = "image/*"

@@ -1,5 +1,4 @@
 package com.example.finalapp.presentation.screens.addpost_screen
-
 import android.Manifest
 import android.app.Activity
 import android.content.ContentValues
@@ -24,7 +23,7 @@ import androidx.core.content.PermissionChecker
 import androidx.fragment.app.viewModels
 import coil.load
 import com.example.finalapp.R
-import com.example.finalapp.data.MIMETYPE_IMAGES
+import com.example.finalapp.domain.model.MIMETYPE_IMAGES
 import com.example.finalapp.databinding.FragmentAddPostBinding
 import com.example.finalapp.domain.model.Image
 import com.example.finalapp.domain.model.Post
@@ -36,8 +35,6 @@ import com.parse.ParseUser
 import com.parse.SaveCallback
 import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
-
-
 class AddPostFragment : Fragment() {
 
 
@@ -95,23 +92,26 @@ class AddPostFragment : Fragment() {
     }
 
     private fun createPost() {
-        if (notEmpty()) {
-            val post = Post(
-                postTitle = binding.postTitle.text.toString(),
-                post_description = binding.postDescription.text.toString(),
-                post_image = parseFileToImage(imageFile!!),
-                user_name = ParseUser.getCurrentUser().username,
-                user_id = ParseUser.getCurrentUser().objectId,
-                post_cooktime = String(),
-                post_preptime = String(),
-                kkal = String(),
-            )
-            viewModel.createPost(post)
-        } else {
-            Toast.makeText(requireContext(), "Все поля должны быть заполнены", Toast.LENGTH_SHORT)
-                .show()
+//        if (Empty()) {
+        val post = Post(
+            postTitle = binding.postTitle.text.toString(),
+            post_description = binding.postDescription.text.toString(),
+            post_image = parseFileToImage(imageFile!!),
+            user_name = ParseUser.getCurrentUser().username,
+            user_id = ParseUser.getCurrentUser().objectId,
+            post_cooktime = String(),
+            post_preptime = String(),
+            kkal = String(),
+            extendIngridients = String(),
+            instruction = String(),
+            count_ingridients = String()
+        )
+        viewModel.createPost(post)
+//        } else {
+//            Toast.makeText(requireContext(), "Все поля должны быть заполнены", Toast.LENGTH_SHORT)
+//                .show()
 
-        }
+//        }
     }
 
     private fun notEmpty(): Boolean {
@@ -120,6 +120,14 @@ class AddPostFragment : Fragment() {
         }
         return false
     }
+
+    private fun Empty(): Boolean {
+        if (imageFile == null) {
+            if (binding.postTitle.text!!.isEmpty() && binding.postDescription.text!!.isEmpty()) return false
+        }
+        return true
+    }
+
 
     private fun checkReadExternalStoragePermission() = if (ContextCompat.checkSelfPermission(
             requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE
@@ -132,11 +140,12 @@ class AddPostFragment : Fragment() {
     private val resultPickReadExternalStorage =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (!isGranted) return@registerForActivityResult
-//            takePicture()
+            takePicture()
         }
 
     private fun takePicture() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent, REQUEST_CODE)
 //        takeImageResult.launch(intent)
     }
 
@@ -169,11 +178,12 @@ class AddPostFragment : Fragment() {
             }
             takePicture?.setOnClickListener {
                 if (!checkReadExternalStoragePermission()) return@setOnClickListener
-//                takePicture()
+                takePicture()
                 Toast.makeText(requireContext(), "Take picture", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
             pickGallery?.setOnClickListener {
+
                 getContent.launch(MIMETYPE_IMAGES)
                 Toast.makeText(requireContext(), "Pick from gallery", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
@@ -204,7 +214,9 @@ class AddPostFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val cPhoto = data!!.extras?.get("data") as Bitmap
+            binding.postImage.setImageBitmap(cPhoto)
             imageUri = cameraUri
             getImage()
         }

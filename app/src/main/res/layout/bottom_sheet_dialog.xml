@@ -111,7 +111,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/gray"
+            android:backgroundTint="@color/yellow"
             android:text="@string/close"
             android:textAllCaps="false"
             android:textColor="@color/black"
