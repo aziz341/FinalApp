@@ -10,29 +10,32 @@ import com.example.finalapp.presentation.callback.PostItemDiffCallBack
 import com.example.finalapp.presentation.viewHolders.PostViewHolder
 import com.example.finalapp.domain.model.Post
 
-class PostAdapter:RecyclerView.Adapter<PostViewHolder>() {
-    var postList:List<Post> = mutableListOf()
-    set(newValue){
-        val diffCallBack = PostItemDiffCallBack(field, newValue)
-        val result = DiffUtil.calculateDiff(diffCallBack)
-        field = newValue
-        result.dispatchUpdatesTo(this)
-    }
+class PostAdapter(val listener: Listener) : RecyclerView.Adapter<PostViewHolder>() {
+    var postList: List<Post> = mutableListOf()
+        set(newValue) {
+            val diffCallBack = PostItemDiffCallBack(field, newValue)
+            val result = DiffUtil.calculateDiff(diffCallBack)
+            field = newValue
+            result.dispatchUpdatesTo(this)
+        }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder =
         PostViewHolder(
             ItemRecentRecipesBinding.bind(
-                LayoutInflater.from(parent.context).inflate(R.layout.item_recent_recipes,parent,false)
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_recent_recipes, parent, false)
             )
         )
 
+
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.bind(postList[position])
-        holder.itemView.setOnClickListener {
-
-        }
-
+        holder.bind(postList[position], listener)
     }
 
     override fun getItemCount(): Int = postList.size
+
+    interface Listener {
+        fun onClick(post: Post)
+    }
 }

@@ -17,14 +17,14 @@ import com.example.finalapp.presentation.viewModels.HomeViewModel
 import com.example.finalapp.domain.model.Post
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),PostAdapter.Listener {
     private val binding: FragmentHomeBinding by lazy {
         FragmentHomeBinding.inflate(layoutInflater)
     }
     private val fragmentList = mutableListOf<Fragment>()
 
     private val adapter: PostAdapter by lazy {
-        PostAdapter()
+        PostAdapter(this)
     }
     private val viewModel: HomeViewModel by viewModels()
 
@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
     }
     private fun navigateToDetailsScreen() {
         findNavController().navigate(
-            R.id.general_nav,
+            R.id.action_navigation_home_to_menuFragment,
             bundleOf(),
             createNavOptionsWithAnimations()
         )
@@ -65,4 +65,8 @@ class HomeFragment : Fragment() {
         .setPopEnterAnim(R.anim.slide_in_left)
         .setPopExitAnim(R.anim.slide_out_right)
         .build()
+
+    override fun onClick(post: Post) {
+    navigateToDetailsScreen()
+    }
 }

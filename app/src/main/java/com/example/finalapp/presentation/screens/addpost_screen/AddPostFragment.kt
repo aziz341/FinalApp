@@ -1,4 +1,5 @@
 package com.example.finalapp.presentation.screens.addpost_screen
+
 import android.Manifest
 import android.app.Activity
 import android.content.ContentValues
@@ -21,9 +22,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.example.finalapp.R
-import com.example.finalapp.domain.model.MIMETYPE_IMAGES
 import com.example.finalapp.databinding.FragmentAddPostBinding
 import com.example.finalapp.domain.model.Image
 import com.example.finalapp.domain.model.Post
@@ -34,7 +35,11 @@ import com.parse.ParseFile
 import com.parse.ParseUser
 import com.parse.SaveCallback
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
+
 class AddPostFragment : Fragment() {
 
 
@@ -43,6 +48,7 @@ class AddPostFragment : Fragment() {
     private var selectedImage: Bitmap? = null
     private var imageFile: ParseFile? = null
     private var pickImageIntent: Intent? = null
+    private var latestTmpUri: Uri? = null
     private val values: ContentValues by lazy {
         ContentValues()
     }
@@ -87,16 +93,19 @@ class AddPostFragment : Fragment() {
         Log.i("Get", "getImage ->")
         if (imageUri != null) {
             Picasso.get().load(imageUri).into(binding.postImage)
-            uploadImage()
         }
     }
 
     private fun createPost() {
-//        if (Empty()) {
+        if (imageFile == null) {
+         requireContext().showToast("Все поля должны быть заполнены")
+            return
+        }
+        val imageFile = imageFile ?: return
         val post = Post(
             postTitle = binding.postTitle.text.toString(),
             post_description = binding.postDescription.text.toString(),
-            post_image = parseFileToImage(imageFile!!),
+            post_image = parseFileToImage(imageFile),
             user_name = ParseUser.getCurrentUser().username,
             user_id = ParseUser.getCurrentUser().objectId,
             post_cooktime = String(),
@@ -107,27 +116,7 @@ class AddPostFragment : Fragment() {
             count_ingridients = String()
         )
         viewModel.createPost(post)
-//        } else {
-//            Toast.makeText(requireContext(), "Все поля должны быть заполнены", Toast.LENGTH_SHORT)
-//                .show()
-
-//        }
     }
-
-    private fun notEmpty(): Boolean {
-        if (imageFile != null) {
-            if (binding.postTitle.text!!.isNotEmpty() && binding.postDescription.text!!.isNotEmpty()) return true
-        }
-        return false
-    }
-
-    private fun Empty(): Boolean {
-        if (imageFile == null) {
-            if (binding.postTitle.text!!.isEmpty() && binding.postDescription.text!!.isEmpty()) return false
-        }
-        return true
-    }
-
 
     private fun checkReadExternalStoragePermission() = if (ContextCompat.checkSelfPermission(
             requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE
@@ -140,14 +129,13 @@ class AddPostFragment : Fragment() {
     private val resultPickReadExternalStorage =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (!isGranted) return@registerForActivityResult
-            takePicture()
         }
 
-    private fun takePicture() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, REQUEST_CODE)
-//        takeImageResult.launch(intent)
-    }
+//    private fun takePicture() {
+//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//        startActivityForResult(intent, REQUEST_CODE)
+////        takeImageResult.launch(intent)
+//    }
 
 //    private val takeImageResult =
 //        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -178,14 +166,13 @@ class AddPostFragment : Fragment() {
             }
             takePicture?.setOnClickListener {
                 if (!checkReadExternalStoragePermission()) return@setOnClickListener
-                takePicture()
-                Toast.makeText(requireContext(), "Take picture", Toast.LENGTH_SHORT).show()
+                requireContext().showToast("Take picture")
+                pickImageFileInCamera()
                 dialog.dismiss()
             }
             pickGallery?.setOnClickListener {
-
-                getContent.launch(MIMETYPE_IMAGES)
-                Toast.makeText(requireContext(), "Pick from gallery", Toast.LENGTH_SHORT).show()
+            selectImageFromGallery()
+                requireContext().showToast("Pick from gallery")
                 dialog.dismiss()
             }
         }
@@ -194,38 +181,51 @@ class AddPostFragment : Fragment() {
     }
 
 
-    private fun uploadImage() {
-        val steam = ByteArrayOutputStream()
-        selectedImage =
-            MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, imageUri)
-        selectedImage?.compress(Bitmap.CompressFormat.PNG, 100, steam)
-        val byteArray = steam.toByteArray()
+    private suspend fun uploadImage(byteArray:ByteArray) = withContext(Dispatchers.IO){
         val parseFile = ParseFile("image.png", byteArray)
         parseFile.saveInBackground(SaveCallback { e ->
             if (e == null) {
-                Toast.makeText(requireContext(), "Image saved!", Toast.LENGTH_SHORT).show()
+                requireContext().showToast("Image saved!")
                 imageFile = parseFile
             } else {
-                Toast.makeText(requireContext(), "Failed is image!", Toast.LENGTH_SHORT).show()
+                requireContext().showToast("Failed is image!")
             }
         })
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val cPhoto = data!!.extras?.get("data") as Bitmap
-            binding.postImage.setImageBitmap(cPhoto)
-            imageUri = cameraUri
-            getImage()
-        }
-    }
-
     private fun parseFileToImage(file: ParseFile): Image {
         return Image("File", file.name, file.url)
 
     }
+    private fun pickImageFileInCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        resultCamera.launch(intent)
+    }
+    private val resultCamera = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
+        val photo = result.data?.extras?.getByte("data") as? Bitmap ?: return@registerForActivityResult
+        handlePickPosterResult(convertBitmapToByteArray(photo))
+    }
+    private fun convertBitmapToByteArray(bitmap: Bitmap): ByteArray {
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+        return stream.toByteArray()
+    }
+    private fun handlePickPosterResult(byteArray: ByteArray) {
+        lifecycleScope.launch {
+            uploadImage(byteArray)
+        }
+    }
+    private val selectImageFromGalleryResult = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let { previewImage.setImageURI(uri) }
+    }
+    private val previewImage by lazy { binding.postImage }
+
+
+    private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
     fun hasPermissions(context: Context, vararg permissions: String): Boolean = permissions.all {
         ActivityCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
@@ -240,4 +240,9 @@ class AddPostFragment : Fragment() {
         )
         val MIME_TYPES = arrayOf("image/jpeg", "image/png")
     }
+}
+fun Context.showToast(message:String){
+    Toast
+        .makeText(this, message, Toast.LENGTH_SHORT)
+        .show()
 }
