@@ -11,7 +11,6 @@ class PostViewHolder(
 ): RecyclerView.ViewHolder(binding.root){
     fun bind(post: Post,listener: PostAdapter.Listener) = binding.apply{
         txtName.text = post.postTitle
-        txtDesc.text = post.post_description
         textPrepTime.text = post.post_preptime
         textView2.text = post.post_cooktime
         txtCooked.text = post.kkal

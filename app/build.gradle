@@ -52,11 +52,11 @@ dependencies {
 
     // для загрузки изображений
     implementation 'io.coil-kt:coil:1.1.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
+    //для навигация через фрагмент
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-
-    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
     implementation("com.squareup.okhttp3:okhttp")
